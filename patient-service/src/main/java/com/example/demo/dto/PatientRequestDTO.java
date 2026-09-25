@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import com.example.demo.dto.validators.CreatePatientValidationGroup;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
@@ -18,7 +20,7 @@ public class PatientRequestDTO {
 	@NotNull(message="The date of birth shouldn't be empty")
 	private String dateOfBirth;
 	
-	@NotNull(message="The registered date shouldn't be empty")
+	@NotNull(groups = CreatePatientValidationGroup.class, message="The registered date shouldn't be empty")
 	private String registered_date;
 
 	public String getName() {
