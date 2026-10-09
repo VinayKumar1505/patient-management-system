@@ -1,0 +1,10 @@
+#update patient
+PUT http://localhost:4000/patients/0aa4f39e-a524-4a4f-8f41-0ecad87cb1cf
+Content-Type: application/json
+{
+  "name": "Vinay Kumar",
+  "email": "vinay@example.com",
+  "address": "123 main street",
+  "dateOfBirth": "1995-09-09",
+  "registered_date": "2024-11-28"
+}
