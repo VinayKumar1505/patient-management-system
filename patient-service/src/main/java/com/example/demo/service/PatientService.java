@@ -13,13 +13,16 @@ import com.example.demo.exception.PatientNotFoundException;
 import com.example.demo.mapper.PatientMapper;
 import com.example.demo.model.Patient;
 import com.example.demo.repository.PatientRepository;
+import com.example.demo.grpc.BillingServiceGrpcClient;
 
 @Service
 public class PatientService {
 	PatientRepository patientRepository;
-	
-	public PatientService(PatientRepository patientRepository){
+	BillingServiceGrpcClient billingServiceGrpcClient;
+
+	public PatientService(PatientRepository patientRepository, BillingServiceGrpcClient billingServiceGrpcClient){
 		this.patientRepository= patientRepository;
+		this.billingServiceGrpcClient = billingServiceGrpcClient;
 	}
 	
 	public List<PatientResponseDTO> getPatients(){
@@ -34,6 +37,7 @@ public class PatientService {
 			throw new PatientAlreadyExistsException("the partient already exists with email"+ patientRequestDTO.getEmail());
 		}
 		Patient patient= patientRepository.save(PatientMapper.toPatient(patientRequestDTO));
+		billingServiceGrpcClient.createAccount(patient.getId().toString(), patient.getName(), patient.getEmail());
 		return PatientMapper.toDTO(patient);
 	}
 	
