@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.pm.patient_service.controller;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.PatientRequestDTO;
-import com.example.demo.dto.PatientResponseDTO;
-import com.example.demo.dto.validators.CreatePatientValidationGroup;
-import com.example.demo.service.PatientService;
+import com.pm.patient_service.dto.PatientRequestDTO;
+import com.pm.patient_service.dto.PatientResponseDTO;
+import com.pm.patient_service.dto.validators.CreatePatientValidationGroup;
+import com.pm.patient_service.service.PatientService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

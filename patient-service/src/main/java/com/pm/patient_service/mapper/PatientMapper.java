@@ -1,13 +1,13 @@
-package com.example.demo.mapper;
+package com.pm.patient_service.mapper;
 
 
 import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
 
-import com.example.demo.dto.PatientRequestDTO;
-import com.example.demo.dto.PatientResponseDTO;
-import com.example.demo.model.Patient;
+import com.pm.patient_service.dto.PatientRequestDTO;
+import com.pm.patient_service.dto.PatientResponseDTO;
+import com.pm.patient_service.model.Patient;
 
 @Component
 public class PatientMapper {

@@ -1,4 +1,4 @@
-package com.example.demo.exception;
+package com.pm.patient_service.exception;
 
 import java.util.HashMap;
 import java.util.Map;

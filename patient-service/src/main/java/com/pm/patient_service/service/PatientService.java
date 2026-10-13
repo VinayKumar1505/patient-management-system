@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.pm.patient_service.service;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -6,14 +6,14 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dto.PatientRequestDTO;
-import com.example.demo.dto.PatientResponseDTO;
-import com.example.demo.exception.PatientAlreadyExistsException;
-import com.example.demo.exception.PatientNotFoundException;
-import com.example.demo.mapper.PatientMapper;
-import com.example.demo.model.Patient;
-import com.example.demo.repository.PatientRepository;
-import com.example.demo.grpc.BillingServiceGrpcClient;
+import com.pm.patient_service.dto.PatientRequestDTO;
+import com.pm.patient_service.dto.PatientResponseDTO;
+import com.pm.patient_service.exception.PatientAlreadyExistsException;
+import com.pm.patient_service.exception.PatientNotFoundException;
+import com.pm.patient_service.mapper.PatientMapper;
+import com.pm.patient_service.model.Patient;
+import com.pm.patient_service.repository.PatientRepository;
+import com.pm.patient_service.grpc.BillingServiceGrpcClient;
 
 @Service
 public class PatientService {

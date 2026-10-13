@@ -1,4 +1,4 @@
-package com.example.demo.grpc;
+package com.pm.patient_service.grpc;
 
 
 import org.springframework.beans.factory.annotation.Value;
