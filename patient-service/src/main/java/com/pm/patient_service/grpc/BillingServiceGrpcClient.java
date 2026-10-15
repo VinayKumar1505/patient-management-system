@@ -28,6 +28,8 @@ public class BillingServiceGrpcClient {
         }
 
     public BillingResponse createAccount(String patientId, String name, String email){
+
+        Log.info("entered into method createAccount with patientId: {}, name: {}, email: {}", patientId, name, email);
         
         Log.info("Creating billing account for patientId: {}, name: {}, email: {}", patientId, name, email);
         BillingRequest request = BillingRequest.newBuilder()

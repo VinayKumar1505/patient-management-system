@@ -14,15 +14,18 @@ import com.pm.patient_service.mapper.PatientMapper;
 import com.pm.patient_service.model.Patient;
 import com.pm.patient_service.repository.PatientRepository;
 import com.pm.patient_service.grpc.BillingServiceGrpcClient;
+import com.pm.patient_service.kafka.KafkaProducer;
 
 @Service
 public class PatientService {
 	PatientRepository patientRepository;
 	BillingServiceGrpcClient billingServiceGrpcClient;
+	KafkaProducer kafkaProducer;
 
-	public PatientService(PatientRepository patientRepository, BillingServiceGrpcClient billingServiceGrpcClient){
+	public PatientService(PatientRepository patientRepository, BillingServiceGrpcClient billingServiceGrpcClient, KafkaProducer kafkaProducer){
 		this.patientRepository= patientRepository;
 		this.billingServiceGrpcClient = billingServiceGrpcClient;
+		this.kafkaProducer = kafkaProducer;
 	}
 	
 	public List<PatientResponseDTO> getPatients(){
@@ -38,6 +41,7 @@ public class PatientService {
 		}
 		Patient patient= patientRepository.save(PatientMapper.toPatient(patientRequestDTO));
 		billingServiceGrpcClient.createAccount(patient.getId().toString(), patient.getName(), patient.getEmail());
+		kafkaProducer.sendEvent(patient);
 		return PatientMapper.toDTO(patient);
 	}
 	
