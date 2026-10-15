@@ -49,6 +49,15 @@ services:
         - action: rebuild
           path: ./billing-service/pom.xml
 
+  analytics-service:
+    build:
+      context: ./analytics-service
+      dockerfile: Dockerfile
+    ports:
+      - "4002:4002"
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+
   kafka:
     image: bitnamilegacy/kafka:4.0.0-debian-12-r10
     ports:

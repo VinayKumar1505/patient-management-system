@@ -6,7 +6,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.pm.patient_service.model.Patient;
-import patient.events.patientEvent;
+import patient.events.PatientEvent;
 
 @Service
 public class KafkaProducer {
@@ -19,7 +19,7 @@ public class KafkaProducer {
     }
 
     public void sendEvent(Patient patient) {
-        patientEvent event = patientEvent.newBuilder()
+        PatientEvent event = PatientEvent.newBuilder()
                 .setPatientId(patient.getId().toString())
                 .setName(patient.getName())
                 .setEmail(patient.getEmail())
