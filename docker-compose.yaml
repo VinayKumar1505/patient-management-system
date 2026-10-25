@@ -10,15 +10,6 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql
 
-  auth-service-db:
-    image: postgres:18
-    ports:
-      - "5002:5432"
-    environment:
-      POSTGRES_DB: ${AUTH_DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-  
   api-gateway:
     build:
       context: ./api-gateway
@@ -36,7 +27,15 @@ services:
           path: ./api-gateway/src
         - action: rebuild
           path: ./api-gateway/pom.xml
-
+  auth-service-db:
+    image: postgres:18
+    ports:
+      - "5002:5432"
+    environment:
+      POSTGRES_DB: ${AUTH_DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+  
   auth-service:
     build:
       context: ./auth-service
@@ -50,6 +49,7 @@ services:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_SQL_INIT_MODE: always
+      jwt.secret: ${JWT_SECRET}
 
   patient-service:
     build:
