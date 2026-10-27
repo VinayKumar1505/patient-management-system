@@ -5,6 +5,9 @@ import com.pm.auth_service.util.JwtUtil;
 import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.pm.auth_service.service.UserService;
+import io.jsonwebtoken.JwtException;
+
 @Service
 public class AuthService {
     private final UserService userService;
@@ -22,5 +25,15 @@ public class AuthService {
                 .filter(user -> passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()))
                 .map(user -> jwtUtil.generateToken(user.getEmail(), user.getRole()));
         return token;
+    }
+
+    // Validate the JWT token
+    public boolean validateToken(String token) {
+        try {
+            jwtUtil.validateToken(token);
+            return true;
+        } catch (JwtException e) {
+            return false;
+        }
     }
 }

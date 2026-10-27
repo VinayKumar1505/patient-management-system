@@ -1,0 +1,4 @@
+#validate the token
+POST http://localhost:4004/auth/validate
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlckB0ZXN0LmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc5MzEyMjUwOSwiZXhwIjoxNzkzMTU4NTA5fQ.TocYRUduMWiqYte3tIEEck7Qctea6yvIbJS2WnwWu5Y
