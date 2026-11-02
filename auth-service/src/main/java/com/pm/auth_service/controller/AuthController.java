@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.pm.auth_service.service.AuthService;
@@ -34,7 +35,7 @@ public class AuthController {
 
     //validate token
     @Operation(summary = "Validate JWT token", description = "Validates the provided JWT token and returns a 200 OK response if valid, or a 401 Unauthorized response if invalid.")
-    @PostMapping("/validate")
+    @GetMapping("/validate")
     public ResponseEntity<Void> validateToken(@RequestHeader("Authorization") String authHeader) {
         if(authHeader == null || !authHeader.startsWith("Bearer ")) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
